@@ -109,12 +109,13 @@ Skip this if you chose Internal.
    - If double-clicking does not work: in Claude Desktop, open **Settings** > **Extensions** and drag the file onto that page.
 3. Click **Install**.
 4. When asked, paste your **Google Client ID** and **Google Client Secret** from Step 1f. Claude Desktop stores the secret in your computer's secure keychain.
-5. Make sure the extension is turned on.
+5. **Turn it on.** Go to **Settings** > **Extensions** > **Clean Links Gmail** and flip **Enabled** on. Claude leaves it off if it was installed before the credentials were entered, so check this even if you think it is on.
+6. Quit Claude Desktop completely (**Cmd+Q** on Mac) and open it again.
 
 ## Step 3: Connect your Gmail (one time)
 
-1. Start a new chat in Claude Desktop and type: **"Use Clean Links Gmail to check my Gmail connection."**
-2. A Google sign-in page opens in your web browser. Choose your account.
+1. Start a new chat in Claude Desktop and type exactly: **"Call the gmail_sign_in tool from Clean Links Gmail. Do not use any other Gmail tool."** Naming the tool matters: if you have another Gmail connector, Claude may pick that one instead.
+2. When Claude asks for approval, check that it says **Clean Links Gmail**, then click **Allow**. A Google sign-in page opens in your web browser. Choose your account.
 3. If you chose External, Google shows a warning that it hasn't verified the app. This is expected because it is your own app. Click **Continue**.
 4. Approve the permissions and close the browser tab when it says "You're signed in."
 5. Back in Claude, ask again. Claude should tell you which email address is connected.
@@ -183,6 +184,9 @@ Normal every 7 days for External (testing) apps. Sign in again on the page that 
 
 **The browser did not open.**
 Claude shows a sign-in link in the chat. Copy it into your browser.
+
+**Claude answers with "threads," or no Google page opens.**
+Claude used a different Gmail tool, or Clean Links Gmail is switched off. Do Step 2 parts 5 and 6, then name the tool as in Step 3.
 
 **Claude used the built-in Gmail connector anyway.**
 Do both parts of Step 4, then start a new chat.
