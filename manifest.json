@@ -1,0 +1,67 @@
+{
+  "manifest_version": "0.3",
+  "name": "clean-links-gmail",
+  "display_name": "Clean Links Gmail",
+  "version": "1.0.0",
+  "description": "Write Gmail drafts from Claude with every link saved exactly as written. No broken Google redirect links.",
+  "long_description": "Clean Links Gmail lets Claude create, edit, and send Gmail drafts while keeping every link exactly as written. It also repairs Google redirect links (google.com/url?q=...) back into the real address before anything is saved or sent, and refuses to save a draft if a redirect link cannot be repaired. It runs on your own computer with your own Google credentials. Your email travels only between your computer and Google.",
+  "author": {
+    "name": "Sean Grant",
+    "url": "https://github.com/sean761"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sean761/clean-links-gmail"
+  },
+  "homepage": "https://github.com/sean761/clean-links-gmail",
+  "documentation": "https://github.com/sean761/clean-links-gmail#readme",
+  "support": "https://github.com/sean761/clean-links-gmail/issues",
+  "license": "MIT",
+  "keywords": ["gmail", "email", "drafts", "links", "google"],
+  "privacy_policies": ["https://policies.google.com/privacy"],
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.cjs",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/server/index.cjs"],
+      "env": {
+        "GOOGLE_CLIENT_ID": "${user_config.client_id}",
+        "GOOGLE_CLIENT_SECRET": "${user_config.client_secret}"
+      }
+    }
+  },
+  "tools": [
+    { "name": "gmail_sign_in", "description": "Connect to your Gmail by signing in to Google in your browser." },
+    { "name": "gmail_connection_status", "description": "Check which Gmail address is connected." },
+    { "name": "create_draft", "description": "Create a new draft (plain text and/or formatted) with links saved exactly." },
+    { "name": "create_reply_draft", "description": "Create a reply draft in an existing conversation, with a reply-all option." },
+    { "name": "update_draft", "description": "Change an existing draft." },
+    { "name": "get_draft", "description": "Read a draft back exactly as Gmail saved it, with a list of its links." },
+    { "name": "list_drafts", "description": "List your drafts." },
+    { "name": "send_draft", "description": "Send a draft, only when you ask." },
+    { "name": "delete_draft", "description": "Delete a draft." },
+    { "name": "search_emails", "description": "Search your email to find a message to reply to." },
+    { "name": "read_email", "description": "Read one email, including its links." }
+  ],
+  "user_config": {
+    "client_id": {
+      "type": "string",
+      "title": "Google Client ID",
+      "description": "From your own Google Cloud project (Desktop app credential). Ends with .apps.googleusercontent.com. See the guide on the GitHub page.",
+      "required": true,
+      "sensitive": false
+    },
+    "client_secret": {
+      "type": "string",
+      "title": "Google Client Secret",
+      "description": "From the same Google Cloud credential. Stored in your computer's secure keychain.",
+      "required": true,
+      "sensitive": true
+    }
+  },
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": { "node": ">=18.0.0" }
+  }
+}

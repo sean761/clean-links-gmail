@@ -1,0 +1,31 @@
+{
+  "name": "clean-links-gmail",
+  "version": "1.0.0",
+  "description": "A Gmail tool for Claude Desktop that saves drafts with every link exactly as written.",
+  "type": "module",
+  "private": true,
+  "author": "Sean Grant",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc --noEmit && node scripts/bundle.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "pack": "npm run build && node scripts/pack.mjs"
+  },
+  "dependencies": {
+    "@googleapis/gmail": "^22.0.2",
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "google-auth-library": "^11.3.4",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@anthropic-ai/mcpb": "^2.1.2",
+    "@types/node": "^26.6.6",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}
